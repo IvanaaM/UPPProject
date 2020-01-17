@@ -1,0 +1,47 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark" style="height: 80px;">
+  <a class="navbar-brand" style="font-size: 25px;" href="http://localhost:4200">Naucna centrala</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div>
+    <ul class="navbar-nav ml-auto" style="font-size: 30px;">
+
+      <li class="nav-item active" >
+
+        <a class="nav-link btn btn-dark" *ngIf="out == true" style="color: aliceblue;" (click)='login()' role="button"  id="btnPrijaviSe">
+          <i class="fa fa-toggle-on" style="margin-right: 5px;"></i>Prijava
+        </a>
+      </li>
+
+      <li class="nav-item active" >
+        <a class="nav-link btn btn-dark" *ngIf="out == true" role="button" (click)="registracija()" id="btnRegistrujSe">
+          <i class="fa fa-user-plus" style="color: aliceblue; margin-right: 5px;"></i>
+          Registracija</a>
+      </li>
+
+      <li class="nav-item" >
+        <a class="nav-link btn btn-dark" *ngIf="out == false" role="button" (click)='logout()' id="btnOdjaviSe"
+          style=" color: rgb(255,255,255);" >
+          <i class="fa fa-toggle-off" style="margin-right: 5px;"></i>Odjava</a>
+      </li>
+
+      <li class="nav-item" >
+        <a class="nav-link btn btn-dark" *ngIf="admin == true" role="button" (click)='admins()' id="btnOdjaviSe"
+          style=" color: rgb(255,255,255); margin-right: 5px;" >
+          <i class="fa fa-gears" style="margin-right: 5px;"></i>Administracija</a>
+      </li>
+
+      <li class="nav-item" >
+        <a class="nav-link btn btn-dark" *ngIf="urednik == true" role="button" (click)='editors()' id="btnOdjaviSe"
+          style=" color: rgb(255,255,255); margin-right: 5px;" >
+          <i class="fa fa-pencil" style="margin-right: 5px;"></i>Uredništvo</a>
+      </li>
+
+
+      
+    </ul>
+
+  </div>
+</nav>

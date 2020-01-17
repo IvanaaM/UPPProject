@@ -1,0 +1,27 @@
+<div [hidden]="show" class=" offset-4 col-md-4" style="margin-top:20px; text-align: center;">
+ 
+  <h1 style="text-align: center; margin-bottom: 35px; margin-top: 35px;"> Prijava</h1>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)" ngNativeValidate>
+  
+       <div class="form-group" style="text-align: center;">
+        
+          <label style="font-weight:bold;"> Username </label> <br>
+        
+          <input type="text" [(ngModel)]="nameuser" class="form-control margin" id="username" name="username"> <br>
+
+          <label style="font-weight:bold;"> Password </label> <br>
+      
+          <input type="password" class="form-control margin" [(ngModel)]="pass" id="password" name="password">
+        
+    </div>
+    
+    <button name="name" class="btn btn-dark" value="value" type="submit">Prijavi se</button>
+    </form>
+    </div>
+
+    <div [hidden]=!show style="text-align: center;"> 
+
+      <h2>Neuspesna prijava. Probajte ponovo</h2>
+      <button (click)="again">Nazad</button>
+
+    </div>
