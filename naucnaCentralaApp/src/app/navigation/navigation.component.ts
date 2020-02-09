@@ -33,20 +33,32 @@ export class NavigationComponent implements OnInit {
   checkLogged(){
    
   if (this.log != null){
-   this.log.roles.forEach(element => {
-     console.log('ovo je' + element);
-     if (element.toString() == 'ROLE_ADMIN'){
-       console.log("jeste");
+
+    this.userService.checkRoles().subscribe( res => {
+
+      console.log(res);
+      
+     res.forEach(element => {
+       if(element.toString() == 'E'){
+        this.urednik = true;
+       }
+       
+       if (element.toString() == 'A'){
         this.admin = true;
-        this.urednik = false;
-     } else if (element.toString() == 'ROLE_EDITOR'){
-       this.urednik = true;
-       this.admin = false;
+       }
+      //  if (element.toString() == 'R'){
+       //   this.admin = true;
+     //  }
+     });
+     
+      localStorage.setItem('roles', JSON.stringify(res));
+
+    });
+  
      }
-   }); 
   }
-    
-  }
+  
+  
 
   registracija(){
     this.router.navigateByUrl('/register/user');
@@ -66,11 +78,12 @@ export class NavigationComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('logged');
+    localStorage.removeItem('roles');
     this.out = true;
     this.urednik = false;
     this.admin = false;
-    //window.location.reload();
-    this.router.navigateByUrl('/');
+    window.location.reload();
+    //this.router.navigateByUrl('');
   }
 
 }

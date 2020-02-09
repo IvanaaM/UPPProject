@@ -49,7 +49,7 @@ export class UnosOblastiComponent implements OnInit {
 
     } else {
 
-      repositoryService.getTask().subscribe(res => {
+      repositoryService.getTask(procIn).subscribe(res => {
 
         this.formFields = res.formFields;
         this.pi = res.processInstanceId;
@@ -99,7 +99,7 @@ export class UnosOblastiComponent implements OnInit {
 
     } else {
       
-    this.userService.postNO(o, this.formFieldsDto.taskId).subscribe( res => {
+    this.userService.postNO(o, this.formFieldsDto.taskId, "naucneOblasti").subscribe( res => {
       console.log(res);
    
       this.show = true;

@@ -16,16 +16,17 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  
-
+ 
   constructor(private httpClient: HttpClient) { }
 
-  registerUser(user, taskId) {
-    return this.httpClient.post("http://localhost:8080/user/post/".concat(taskId), user, httpOptions) as Observable<any>;
+  registerUser(user, taskId, type) {
+    return this.httpClient.post("http://localhost:8080/user/post/".concat(taskId) + "/" + type, user, httpOptions) as Observable<any>;
   }
 
-  postNO(o, taskId: string) {
-    return this.httpClient.post("http://localhost:8080/user/postNO/".concat(taskId), o, httpOptions) as Observable<any>;
+  postNO(o, taskId: string, type: string) { 
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.post("http://localhost:8080/user/post/" + taskId +"/" + type, o, {headers: headers}) as Observable<any>;
   }
 
   login(log){
@@ -37,9 +38,33 @@ export class UserService {
     let log = new Login();
     log = JSON.parse(localStorage.getItem('logged'));
     return log;
+  } 
+  
+  checkRoles() {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/user/getRoles', {headers: headers}) as Observable<any>
+  }
+  checkHasTasks(procIn) {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/editor/checkHasTasks/' + procIn, {headers: headers}) as Observable<any>
   }
 
+  getTaskForUser(instance) {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/user/getTask/' + instance, {headers: headers}) as Observable<any>
+  }
+
+  shouldPay(instance) {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/user/shouldPay/' + instance, {headers: headers}) as Observable<any>
+  }
+ 
   logout(){
     
   }
+
 }

@@ -18,7 +18,6 @@ import com.ftn.repository.RoleRepository;
 import com.ftn.repository.ScientificAreaRepository;
 import com.ftn.repository.UserRepository;
 
-
 @Service
 public class SaveUser implements JavaDelegate {
 
@@ -34,6 +33,7 @@ public class SaveUser implements JavaDelegate {
 	
 	@Autowired
 	UserRepository userRepository;
+	
 	
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {

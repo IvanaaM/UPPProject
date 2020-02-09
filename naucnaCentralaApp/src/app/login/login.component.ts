@@ -27,17 +27,28 @@ export class LoginComponent implements OnInit {
     log.password = this.pass;
     log.username = this.nameuser;
     
-    this.userService.login(log).subscribe( res => {
-      console.log(res);
+    this.userService.login(log).subscribe( user => {
+      console.log(user);
 
-      if(res != null){
-        localStorage.setItem('logged', JSON.stringify(res));
-        //window.location.reload();
-        this.router.navigateByUrl('');
-      } else {
-        alert("Neuspesno logovanje, kredencijali se ne poklapaju");
+      if (user.accessToken == null) {
+        alert('Ne postoji korisnik sa unetim kredencijalima!');
+        return;
       }
 
+        localStorage.setItem('logged', JSON.stringify(user.accessToken));
+
+        this.userService.checkRoles().subscribe( r => {
+
+          console.log(r);
+          localStorage.setItem('roles', JSON.stringify(r));
+    
+        });
+      
+        console.log(localStorage);
+
+        //window.location.reload();
+        this.router.navigateByUrl('');
+    
     });
 
   }

@@ -8,6 +8,12 @@ import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './editor/editor.component';
 import { AddEditorsComponent } from './add-editors/add-editors.component';
 import { CheckDataComponent } from './check-data/check-data.component';
+import { MagazinesComponent } from './magazines/magazines.component';
+import { ChooseMagazineComponent } from './choose-magazine/choose-magazine.component';
+import { MainEditorPageComponent } from './main-editor-page/main-editor-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PayingComponent } from './paying/paying.component';
+import { PrepareReviewersComponent } from './prepare-reviewers/prepare-reviewers.component';
 
 const routes: Routes = [
 
@@ -21,6 +27,19 @@ const routes: Routes = [
   {path: 'editor/:mode', component: EditorComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'checkData', component: CheckDataComponent},
+  {path: 'magazines', component: MagazinesComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'userProfile', component: UserProfileComponent},
+  {path: 'chooseMagazine', component: ChooseMagazineComponent},
+  {path: 'chooseMagazine/:mode', component: ChooseMagazineComponent},
+  {path: 'mainEditor', component: MainEditorPageComponent},
+  {path: 'mainEditor/:mode', component: MainEditorPageComponent},
+  {path: 'mainEditor/:mode/:type', component: MainEditorPageComponent},
+  {path: 'paying', component: PayingComponent},
+  {path: 'profil', component: UserProfileComponent},
+  {path: 'prepareReviewers', component: PrepareReviewersComponent},
+  {path: 'prepareReviewers/:mode', component: PrepareReviewersComponent},
+  {path: 'prepareReviewers/:mode/:type', component: PrepareReviewersComponent}
   
 ];
 

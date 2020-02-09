@@ -33,7 +33,7 @@ export class EditorComponent implements OnInit {
       this.show = false;
     }
 
-    
+    /*
     editorService.getTask(procIn).subscribe(res => {
        
       this.formFields = res.formFields;
@@ -48,7 +48,7 @@ export class EditorComponent implements OnInit {
           }
         });
       });
-
+*/
   }
 
   ngOnInit() {
@@ -56,6 +56,10 @@ export class EditorComponent implements OnInit {
 
   createMagazine(){
     this.router.navigateByUrl('/register/createMagazine');
+  }
+
+  mainEditing(){
+    this.router.navigateByUrl('/mainEditor');
   }
 
 

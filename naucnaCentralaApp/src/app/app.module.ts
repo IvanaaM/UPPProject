@@ -16,6 +16,13 @@ import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './editor/editor.component';
 import { AddEditorsComponent } from './add-editors/add-editors.component';
 import { CheckDataComponent } from './check-data/check-data.component';
+import { MagazinesComponent } from './magazines/magazines.component';
+import { ChooseMagazineComponent } from './choose-magazine/choose-magazine.component';
+import { MainEditorPageComponent } from './main-editor-page/main-editor-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PayingComponent } from './paying/paying.component';
+import { PrepareReviewersComponent } from './prepare-reviewers/prepare-reviewers.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -28,15 +35,22 @@ import { CheckDataComponent } from './check-data/check-data.component';
     HomeComponent,
     EditorComponent,
     AddEditorsComponent,
-    CheckDataComponent
+    CheckDataComponent,
+    MagazinesComponent,
+    ChooseMagazineComponent,
+    MainEditorPageComponent,
+    UserProfileComponent,
+    PayingComponent,
+    PrepareReviewersComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     RouterModule,
     FormsModule,
     HttpClientModule, 
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

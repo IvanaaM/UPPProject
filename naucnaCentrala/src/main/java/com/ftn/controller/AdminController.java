@@ -29,25 +29,17 @@ import com.ftn.modelDTO.UserDTO;
 import com.ftn.repository.MagazineRepository;
 import com.ftn.repository.RoleRepository;
 import com.ftn.repository.UserRepository;
+import com.ftn.services.MagazineService;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
-	IdentityService identityService;
-	
-	@Autowired
 	private RuntimeService runtimeService;
-	
+
 	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private RoleRepository roleRepository;
-	
-	@Autowired
-	private MagazineRepository magazineRepository;
+	private MagazineService magazineService;
 	
 	@Autowired
 	TaskService taskService;
@@ -107,7 +99,7 @@ public class AdminController {
 		
 		String name = (String) runtimeService.getVariable(procIn, "naziv");
 		
-		Magazine magazine = magazineRepository.findByName(name);
+		Magazine magazine = magazineService.findByName(name);
 		 
 	    return magazine;
 	}

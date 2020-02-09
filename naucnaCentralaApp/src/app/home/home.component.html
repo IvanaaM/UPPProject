@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <!-- Set the page to the width of the device and set the zoon level -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- If IE use the latest rendering engine -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Naucna centrala</title>
-  </head>
-  <body>
+<div>
+    <button name="buttonName" style="margin-top: 30px; margin-left: 30px;" [hidden]="!show" class="btn btn-dark" (click)="report()">Objavi rad</button>
 
-  </body>
-</html>
+    <button class="btn btn-dark" [hidden]="noboody" style="margin-top: 30px; margin-left: 30px;" (click)="changePaper()">Obavestenja</button>
+</div>

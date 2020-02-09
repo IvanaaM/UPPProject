@@ -11,6 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class EditorService {
+ 
 
   constructor(private httpClient: HttpClient, private http : Http) { }
 
@@ -53,5 +54,11 @@ export class EditorService {
 
   post(o, taskId, type){
     return this.httpClient.post('http://localhost:8080/editor/post/'+ taskId + "/" + type, o) as Observable<any>;
+  }
+
+  setDate(procIn) {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/editor/checkHasTasks/' + procIn, {headers: headers}) as Observable<any>
   }
 }

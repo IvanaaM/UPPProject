@@ -111,7 +111,7 @@ export class RegisterComponent implements OnInit {
       });
     } else if (this.mode == 'user') {
 
-    this.userService.registerUser(o, this.formFieldsDto.taskId).subscribe( res => {
+    this.userService.registerUser(o, this.formFieldsDto.taskId, "registration").subscribe( res => {
       console.log(res);
       
       this.router.navigateByUrl('/unosOblasti');
