@@ -1154,10 +1154,8 @@ if(formFields!=null){
         <di:waypoint x="750" y="560" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_04l5bot_di" bpmnElement="SequenceFlow_04l5bot">
-        <di:waypoint x="840" y="439" />
-        <di:waypoint x="840" y="366" />
-        <di:waypoint x="829" y="366" />
-        <di:waypoint x="829" y="317" />
+        <di:waypoint x="840" y="414" />
+        <di:waypoint x="840" y="317" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_15aud0u_di" bpmnElement="SequenceFlow_15aud0u">
         <di:waypoint x="964" y="317" />
