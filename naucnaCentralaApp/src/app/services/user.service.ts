@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class UserService {
  
+ 
   constructor(private httpClient: HttpClient) { }
 
   registerUser(user, taskId, type) {
@@ -62,6 +63,19 @@ export class UserService {
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.httpClient.get('http://localhost:8080/user/shouldPay/' + instance, {headers: headers}) as Observable<any>
   }
+
+  postCoauthor(o, taskId, type) {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.post("http://localhost:8080/user/postCoauthor/" + taskId +"/" + type, o,  {headers: headers}) as Observable<any>;
+  }
+
+  getComments(instance) {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get("http://localhost:8080/reviewer/getReviews/"  + instance,  {headers: headers}) as Observable<any>;
+  }
+ 
  
   logout(){
     

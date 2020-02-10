@@ -16,6 +16,10 @@ export class HomeComponent implements OnInit {
   list: [];
   hasTasks: boolean = true;
   noboody: any;
+  urednik: boolean = false;
+  recenzent: boolean = false;
+  admin: boolean = false;
+  data: any;
 
   constructor(protected router: Router, private userService: UserService) {
 
@@ -32,33 +36,30 @@ export class HomeComponent implements OnInit {
 
         if(element.toString() == 'U'){
           this.show = true;
-        } else {
-          this.show = false;
+          this.noboody = true;
+          
+        }
+
+        if(element.toString() == 'E'){
+          this.urednik = true;
+        }
+
+        if(element.toString() == 'R'){
+          this.recenzent = true;
+        }
+       
+        if(element.toString() == 'A'){
+          this.admin = true;
         }
       });
      
      } else { 
-       this.show = false;
-       this.noboody = true;
+      
      }
-/*
-     const procIn = JSON.parse(localStorage.getItem('instance'));
-     if(procIn != null){
-     this.userService.checkHasTask(procIn).subscribe(res => {
-       console.log(res);
-       if(res!=null){
-        this.hasTasks = false;
-       }
-     });
-   
-    } else {
-      this.hasTasks = false;
-    }
-    
-*/
+
   }
 
-  report(){
+report(){
     this.router.navigateByUrl('/chooseMagazine');
 }
 
@@ -67,6 +68,18 @@ changePaper(){
 
   this.router.navigateByUrl('profil');
 
+}
+
+ured(){
+  this.router.navigateByUrl('editor');
+}
+
+rec(){
+  this.router.navigateByUrl('reviewers');
+}
+
+admin2(){
+  this.router.navigateByUrl('admin');
 }
 
 }

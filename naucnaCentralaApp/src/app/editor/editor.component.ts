@@ -93,4 +93,16 @@ export class EditorComponent implements OnInit {
   }
   }
 
+  reviewCheck(){
+    this.router.navigateByUrl('checkReviews');
+  }
+
+  setDate(){
+    this.router.navigateByUrl('setDate');
+  }
+
+  prepare(){
+    this.router.navigateByUrl('prepareReviewers/reviewers');
+  }
+
 }

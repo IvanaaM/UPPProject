@@ -1,11 +1,26 @@
-<div class=" offset-3 col-md-7" style="margin-top:20px; text-align: center;">
+<div class=" offset-3 col-md-6" style="margin-top:20px; text-align: center;">
  
-<h2>Obavestenja</h2>
+<br><br>
+ 
+<h2>{{title}}</h2><br>
 
-<h4>{{title}}</h4>
+<div *ngIf="!show" class=" offset-3 col-md-6" style="margin-top:10px; text-align: center;">
 
+<div *ngIf="!show">
+<h4>Komentari o radu</h4>
+  <div style="margin-right: 30px; margin-top: -20px;" *ngFor="let l of comms; let i = index">
+    <br>
+  
+    <label><b>Recenzent {{i+1}}: </b></label>
+    
+    <label>{{l.comments}}</label>
+ 
+  <br>
+  </div>
+</div>
+</div>
 
-<table style=" margin-left: 10px; text-align: center;">
+<table *ngIf="show" style=" margin-left: 10px; text-align: center;">
   <div *ngFor="let pap of paper">
 
       <tr *ngIf="pap.fieldId != 'pdf'"><td><b>{{pap.fieldId}}: </b></td> 
@@ -15,9 +30,9 @@
       
   </div>
 </table>
-
-<h4 style="margin-top: 40px;">Komentar urednika: <h5> {{comm}}</h5> </h4>
+<h5 style="float: left; margin-top: 15px; margin-bottom: 25px;" *ngIf="show"><b>Komentar urednika: {{comm}}</b></h5>
 <iframe style="width: 730px; height: 700px;"></iframe>
+<div>
 <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)" ngNativeValidate>
   
   <div *ngFor="let field of formFields" style="margin-bottom: 25px;" >
@@ -43,5 +58,6 @@
 
 <button name="name" class="btn btn-dark" value="value" type="submit">Posalji</button>
 </form>
+</div>
 </div>>
 

@@ -173,6 +173,7 @@ public class Data implements ApplicationRunner {
 			
 			m2.getReviewers().add(userRepository.save(uc6));
 			m.getReviewers().add(userRepository.save(uc6));
+			m2.getEditors().add(userRepository.save(uc6));
 					
 			
 			magazineService.saveMagazine(m);

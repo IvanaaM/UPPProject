@@ -21,13 +21,13 @@ public class SendEmailRejectPaper implements JavaDelegate {
 		
 		String subject = "Odbijanje rada";
 		
-		String text = "Rad koji ste prijavili se odbija iz tehnickih razloga";
+		String text = "Rad koji ste prijavili se odbija iz tehnickih razloga \n\n Naucna Centrala";
 		
 		String username = (String) execution.getProcessInstance().getVariable("user");
 		
-		//mailService.sendEmail(userService.findByUsername(username).getEmail(), text, subject);
+		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
-		System.out.println("usao u reject " + username);
+		System.out.println("Odbija se rad za korisnika " + username);
 
 	}
 

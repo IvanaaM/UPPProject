@@ -1,11 +1,16 @@
 package com.ftn.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,9 +25,6 @@ public class Paper {
 	@Column(name="Title")
 	private String title;
 	
-	@Column(name="Coauthors")
-	private String coauthors;
-	
 	@Column(name="Keywords")
 	private String keywords;
 	
@@ -31,6 +33,9 @@ public class Paper {
 	
 	@ManyToOne
 	private ScientificArea scientificArea;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<CoauthorOther> coauthorsOthers = new HashSet<CoauthorOther>();
 	
 	//@Column(columnDefinition="LONGBLOB")
 	@Lob
@@ -46,21 +51,6 @@ public class Paper {
 
 	}
 	
-	public Paper(String title, String coauthors, String keywords, String apstract, ScientificArea scientificArea,
-			String pathPdf, UserCustom author, Magazine magazine) {
-		super();
-		this.title = title;
-		this.coauthors = coauthors;
-		this.keywords = keywords;
-		this.apstract = apstract;
-		this.scientificArea = scientificArea;
-		this.pathPdf = pathPdf;
-		this.author = author;
-		this.magazine = magazine;
-	}
-
-
-
 	public Long getId() {
 		return id;
 	}
@@ -75,14 +65,6 @@ public class Paper {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getCoauthors() {
-		return coauthors;
-	}
-
-	public void setCoauthors(String coauthors) {
-		this.coauthors = coauthors;
 	}
 
 	public String getKeywords() {
@@ -131,6 +113,14 @@ public class Paper {
 
 	public void setMagazine(Magazine magazine) {
 		this.magazine = magazine;
+	}
+
+	public Set<CoauthorOther> getCoauthorsOthers() {
+		return coauthorsOthers;
+	}
+
+	public void setCoauthorsOthers(Set<CoauthorOther> coauthorsOthers) {
+		this.coauthorsOthers = coauthorsOthers;
 	}
 	
 }

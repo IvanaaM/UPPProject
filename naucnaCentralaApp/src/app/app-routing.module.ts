@@ -14,10 +14,15 @@ import { MainEditorPageComponent } from './main-editor-page/main-editor-page.com
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PayingComponent } from './paying/paying.component';
 import { PrepareReviewersComponent } from './prepare-reviewers/prepare-reviewers.component';
+import { ReviewComponent } from './review/review.component';
+import { CheckReviewsComponent } from './check-reviews/check-reviews.component';
+import { CoauthorsComponent } from './coauthors/coauthors.component';
+import { ReviewerComponent } from './reviewer/reviewer.component';
+import { SetDateComponent } from './set-date/set-date.component';
 
 const routes: Routes = [
 
-  {path: '', component: HomeComponent, pathMatch: 'full'}, 
+  {path: '', component: HomeComponent}, 
   {path: 'register/:mode', component: RegisterComponent},
   {path: 'unosOblasti', component: UnosOblastiComponent},
   {path: 'unosOblasti/:mode', component: UnosOblastiComponent},
@@ -39,7 +44,13 @@ const routes: Routes = [
   {path: 'profil', component: UserProfileComponent},
   {path: 'prepareReviewers', component: PrepareReviewersComponent},
   {path: 'prepareReviewers/:mode', component: PrepareReviewersComponent},
-  {path: 'prepareReviewers/:mode/:type', component: PrepareReviewersComponent}
+  {path: 'prepareReviewers/:mode/:type', component: PrepareReviewersComponent},
+  {path: 'review', component: ReviewComponent},
+  {path: 'checkReviews', component: CheckReviewsComponent},
+  {path: 'checkReviews/:mode', component: CheckReviewsComponent},
+  {path: 'addCoauthors', component: CoauthorsComponent},
+  {path: 'reviewers', component: ReviewerComponent},
+  {path: 'setDate', component: SetDateComponent}
   
 ];
 

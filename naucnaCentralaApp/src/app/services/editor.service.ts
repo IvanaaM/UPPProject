@@ -11,8 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class EditorService {
- 
-
+  
   constructor(private httpClient: HttpClient, private http : Http) { }
 
   startProcess(){
@@ -49,11 +48,15 @@ export class EditorService {
   }
 
   getNext(procIn){
-    return this.httpClient.get('http://localhost:8080/editor/get/' + procIn) as Observable<any>;
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/editor/get/' + procIn, {headers: headers}) as Observable<any>;
   }
 
   post(o, taskId, type){
-    return this.httpClient.post('http://localhost:8080/editor/post/'+ taskId + "/" + type, o) as Observable<any>;
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.post('http://localhost:8080/editor/post/'+ taskId + "/" + type, o, {headers: headers}) as Observable<any>;
   }
 
   setDate(procIn) {
@@ -61,4 +64,11 @@ export class EditorService {
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.httpClient.get('http://localhost:8080/editor/checkHasTasks/' + procIn, {headers: headers}) as Observable<any>
   }
+
+  getCoauthors(instance) {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/editor/getCoauthors/' + instance, {headers: headers}) as Observable<any>
+  }
+
 }

@@ -214,6 +214,13 @@ public class EditorController {
 		
 	}
 	
+	@PreAuthorize("hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_USER')")
+	@GetMapping(value = "/getCoauthors/{procIn}", produces="application/json")
+	public Object getCoauthor(@PathVariable String procIn) {
+		
+		return runtimeService.getVariable(procIn, "coauthors");
+		
+	}
 	
 	private HashMap<String, Object> mapListToDto(List<FormSubmissionDto> list)
 	{

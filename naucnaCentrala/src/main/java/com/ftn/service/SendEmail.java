@@ -52,7 +52,7 @@ public class SendEmail implements JavaDelegate {
 	    String text = "Dobrodosli " + name + "! \n\n " + "Da zavrsite registraciju i aktivirate Vas nalog kliknite na sledeci link:"
 		+ "\n\n http://localhost:8080/user/confirmMail \n\n Naucna Centrala \n\n";
 	    	    
-	  //  mailService.sendEmail(email, text, "Aktivacija naloga");
+	    mailService.sendEmail("ivanamarin67@gmail.com", text, "Aktivacija naloga");
 	    System.out.println("posalao mejl");
 	    
 	}

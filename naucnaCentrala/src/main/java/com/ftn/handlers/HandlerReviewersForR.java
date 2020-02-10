@@ -37,7 +37,7 @@ public class HandlerReviewersForR implements TaskListener {
 		for(FormField fp : formFields) {
 			System.out.println(fp.getId() + fp.getType());
 			
-			if(fp.getId().equals("recenz")) {
+			if(fp.getId().equals("recenz") || fp.getId().equals("odabRec")) {
 				
 				EnumFormType enumFormType = (EnumFormType) fp.getType();
 				

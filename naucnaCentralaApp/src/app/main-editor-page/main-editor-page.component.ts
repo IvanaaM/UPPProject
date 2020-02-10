@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PaperService } from '../services/paper.service';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
-import { Paper } from '../modelDTO/paper';
-import { PdfDto } from '../modelDTO/PdfDto';
 import { EditorService } from '../services/editor.service';
 import { UserService } from '../services/user.service';
+import { ReviewService } from '../services/review.service';
 
 @Component({
   selector: 'app-main-editor-page',
@@ -31,8 +29,12 @@ export class MainEditorPageComponent implements OnInit {
   title: String = '';
   pdfGood: boolean = false;
   dataShow: boolean = false;
+  coa: [];
+  pdfShow2: boolean = true;
+  accept: boolean = false;
+  NO: any;
 
-  constructor(protected router: Router, private route: ActivatedRoute, private userService: UserService, private paperService: PaperService, private editorService: EditorService) { }
+  constructor(private reviewService: ReviewService, protected router: Router, private route: ActivatedRoute, private userService: UserService, private paperService: PaperService, private editorService: EditorService) { }
 
   // stranica glavnog urednika: treba da mu se prikazu zadaci za obradu radova:
   // dakle, sve AKTIVNE INSTANCE procesa za obradu teksta koje se odnose na
@@ -52,7 +54,7 @@ export class MainEditorPageComponent implements OnInit {
 
         this.title = 'Postavka roka + komentar';
         this.pdfShow = true;
-        this.dataShow = true;
+        this.dataShow = false;
 
         this.userService.checkHasTasks(this.instance).subscribe(data => {
 
@@ -65,7 +67,7 @@ export class MainEditorPageComponent implements OnInit {
       } else{
 
       this.title = 'Provera PDF-a';
-      this.pdfShow = false;
+      this.pdfShow = true;
       this.dataShow = true;
 
       this.paperService.getPdfTaskCheck(this.instance).subscribe(res => {
@@ -88,10 +90,15 @@ export class MainEditorPageComponent implements OnInit {
 
    } else {
 
-      
+    if( JSON.parse(localStorage.getItem('manjeIzmene')) == null){
+
       this.pdfShow = true;
       this.dataShow = false;
       this.title="Provera podataka rada";
+
+      this.editorService.getCoauthors(this.instance).subscribe(r => {
+          this.coa = r;
+      });
 
     this.paperService.getPapersForIds(this.instance).subscribe(res => {
       console.log(res);
@@ -107,6 +114,35 @@ export class MainEditorPageComponent implements OnInit {
     
     });
 
+    } else {
+      this.pdfShow = true;
+      this.dataShow = true;
+      this.pdfShow2 = false;
+      //slucaj gde urednik donosi konacnu odluku, bila je zahtevana manja izmena rada
+      //pokazati i komentare recenzenata
+      this.editorService.getNext(this.instance).subscribe(re => {
+
+        this.createForm(re);
+        this.paperService.getPdfForPaper(this.taskId).subscribe(r => {
+
+          document.querySelector('iframe').src = r.pdf;
+
+          this.reviewService.getAllReviews(this.instance).subscribe(res => {
+
+            this.list = res;
+
+              this.paperService.getPdfForPaper(this.taskId).subscribe(re => {
+                document.querySelector('iframe').src = re.pdf;
+              })
+
+          });
+        });
+
+      });
+    }
+
+      
+     
     }
     
   }
@@ -117,7 +153,7 @@ createForm(res){
         this.formFields = res.formFields;
         this.procIn = res.processInstanceId;
         this.formFieldsDto = res;
-
+        this.taskId = res.taskId;
         //localStorage.setItem('instance', JSON.stringify(this.procIn));
 
         this.formFields.forEach( (field) =>{
@@ -146,6 +182,16 @@ onSubmit(value, form){
       }
     }
 
+    // hoce ponovo doradu
+    if(value[property] == 'konDa'){
+      this.accept = true;
+      console.log("jesteee");
+    }
+
+    if(value[property] == 'konNE'){
+        this.accept = false;
+        console.log("nijeeee");
+    }
     o.push({fieldId : property, fieldValue : value[property]});
     }
 
@@ -164,15 +210,37 @@ if (this.mode == 'Pdf'){
         this.router.navigateByUrl('mainEditor/Pdf/setD'); 
       } else {
         
-        this.router.navigateByUrl('prepareReviewers/reviewers'); 
+        // Rad je dobar i ide na recenziranje, sad je loguje urednikNaucne oblasti
+        this.router.navigateByUrl(''); 
       }
     });
-  }
 
+  }
 
 } else {
 
-  this.paperService.post(this.taskId, o, 'temPrihvatljiv').subscribe(res => {
+  if (JSON.parse(localStorage.getItem('manjeIzmene')) != null){
+
+
+    this.editorService.post(o, this.taskId, 'konacnaOdl').subscribe(res =>{
+
+      console.log('usao je u kraj');
+        if(this.accept == true){
+          console.log('kraj procesa');
+          localStorage.clear();
+          this.router.navigateByUrl('');
+        } else {
+          localStorage.setItem('rec', JSON.stringify(true));
+         // localStorage.removeItem('rec');
+         // localStorage.removeItem('manje izmene');
+          this.router.navigateByUrl('setDate');
+        }
+
+    });
+} else {
+
+
+   this.paperService.post(this.taskId, o, 'temPrihvatljiv').subscribe(res => {
     console.log(res);
     if(this.formatGood == true){
     this.router.navigateByUrl('mainEditor/Pdf');
@@ -181,14 +249,27 @@ if (this.mode == 'Pdf'){
     }
   });
 }
-
+}
 
 
   }
 
-  
+  handleRecomm(str: String){
+
+    if (str == 'prep1'){
+       return 'Prihvata se';
+    } else if (str == 'prep2'){
+       return 'Prihvata se uz manje ispravke';
+    } else if (str == 'prep3'){
+       return 'Prihvata se uslovno uz vece ispravke';
+    } else {
+       return 'Odbija se';
+    }
+}
 
 }
+
+
 
 
 

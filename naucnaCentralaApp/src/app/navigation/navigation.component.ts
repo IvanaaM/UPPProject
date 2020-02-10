@@ -10,35 +10,30 @@ import { Login } from '../modelDTO/login';
 })
 export class NavigationComponent implements OnInit {
 
-  log: Login;
+  log: any;
+  roles = [];
   out: boolean = false;
   admin: boolean = false;
   urednik: boolean = false;
+  recenzent: boolean = false;
 
   constructor(protected router: Router, private userService: UserService) { 
 
   }
 
   ngOnInit() {
-    this.log = JSON.parse(localStorage.getItem('logged'));
 
-    if (this.log == null){
-      this.out = true;
-    } else {
-      this.out = false;
-    }
+    this.log = JSON.parse(localStorage.getItem('logged'));
     this.checkLogged();
   }
-
   checkLogged(){
    
   if (this.log != null){
 
-    this.userService.checkRoles().subscribe( res => {
+    this.roles = JSON.parse(localStorage.getItem('roles'));
+ 
 
-      console.log(res);
-      
-     res.forEach(element => {
+     this.roles.forEach(element => {
        if(element.toString() == 'E'){
         this.urednik = true;
        }
@@ -46,14 +41,12 @@ export class NavigationComponent implements OnInit {
        if (element.toString() == 'A'){
         this.admin = true;
        }
-      //  if (element.toString() == 'R'){
-       //   this.admin = true;
-     //  }
+        if (element.toString() == 'R'){
+          this.recenzent = true;
+       }
      });
      
-      localStorage.setItem('roles', JSON.stringify(res));
-
-    });
+      
   
      }
   }
@@ -76,12 +69,17 @@ export class NavigationComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  reviewers(){
+    this.router.navigateByUrl('/reviewers');
+  }
+
   logout(){
     localStorage.removeItem('logged');
     localStorage.removeItem('roles');
     this.out = true;
     this.urednik = false;
     this.admin = false;
+    this.recenzent = false;
     window.location.reload();
     //this.router.navigateByUrl('');
   }

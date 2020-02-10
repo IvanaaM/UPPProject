@@ -22,7 +22,6 @@ import com.ftn.services.UserService;
 @Service
 public class SendEmailAuthor implements JavaDelegate {
 
-
 	@Autowired
 	MailService mailService;
 	
@@ -31,13 +30,12 @@ public class SendEmailAuthor implements JavaDelegate {
 	
 	@Autowired
 	MagazineService magazineService;
-
 	
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		
 		String text = "Uspesno prijavljen novi rad u sistem Naucna Centrala \n\n Naucna Centrala";
-		String subject = "Novi rad";
+		String subject = "Novi rad - autor";
 		String title = "";
 		List<FormSubmissionDto> list =  (List<FormSubmissionDto>) execution.getProcessInstance().getVariable("paper");
 
@@ -48,15 +46,13 @@ public class SendEmailAuthor implements JavaDelegate {
 			}
 		}
 		
-		Object principal = SecurityContextHolder. getContext(). getAuthentication(). getPrincipal();
-		if (principal instanceof UserDetails) {
-		String username = ((UserDetails)principal). getUsername();
+		String username = (String) execution.getProcessInstance().getVariable("user");
 		
-		//mailService.sendEmail(l.getUsername(), text, subject);
+		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 		System.out.println("Ovo je user: " + username);
 		
 	}
 
-	}
+	
 }

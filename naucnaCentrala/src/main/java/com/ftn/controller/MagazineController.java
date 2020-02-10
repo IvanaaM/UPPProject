@@ -1,5 +1,6 @@
 package com.ftn.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,6 +63,7 @@ public class MagazineController {
 		//System.out.println("Username iz autentif: " + k);
 		
 		runtimeService.setVariable(pi.getId(), "user", auth.getName());
+		runtimeService.setVariable(pi.getId(), "coauthors", new ArrayList<String>());
 		
 		//Task task = taskService.createTaskQuery().taskAssignee((String) runtimeService.getVariable(pi.getId(), "user")).list().get(0);
 		Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).list().get(0);
@@ -111,7 +113,7 @@ public class MagazineController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 	
-	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR')")
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')")
 	@GetMapping(path = "/getPdfCheck/{taskId}", produces = "application/json")
     public @ResponseBody Object getPdf(@PathVariable String taskId) {
 		
@@ -137,7 +139,6 @@ public class MagazineController {
 		return new FormFieldsDto(task.getId(), procIn, properties);
 	
 	}
-	
 	
 	private HashMap<String, Object> mapListToDto(List<FormSubmissionDto> list)
 	{

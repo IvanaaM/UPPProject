@@ -184,6 +184,30 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 	
+	@PreAuthorize("hasAuthority('ROLE_USER')")
+	@PostMapping(path = "/postCoauthor/{taskId}/{type}", produces = "application/json")
+    public @ResponseBody ResponseEntity postCoauthor(@RequestBody List<FormSubmissionDto> dto, @PathVariable String taskId, @PathVariable String type) {
+		
+		HashMap<String, Object> map = this.mapListToDto(dto);
+		Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+		String processInstanceId = task.getProcessInstanceId();
+	
+		List<String> list = (List<String>) runtimeService.getVariable(processInstanceId, "coauthors");
+		
+		list.add(type);
+		
+		runtimeService.setVariable(processInstanceId, "coauthors", list);
+		String var = type + "coa";
+		System.out.println("ubacujem varibalu " + var);
+		
+		runtimeService.setVariable(processInstanceId, var, dto);
+				
+		formService.submitTaskForm(taskId, map);
+		System.out.println("Zavrsio");
+		
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
 	@GetMapping(path="/confirmMail", produces="application/json")
 	public String confirmNotification() {
 		
@@ -304,7 +328,7 @@ public class UserController {
 		}
 		}
 	
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_REVIEWER')")
 	@GetMapping(path = "/getEditorCom/{procIn}", produces = "application/json")
     public @ResponseBody Object getPdf(@PathVariable String procIn) {
 		

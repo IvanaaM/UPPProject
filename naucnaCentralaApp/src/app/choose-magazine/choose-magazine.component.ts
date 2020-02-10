@@ -99,7 +99,7 @@ export class ChooseMagazineComponent implements OnInit {
 
       this.magazineService.postMagazineData(o, this.formFieldsDto.taskId, 'paper').subscribe(res => {
         
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('addCoauthors');
           // nakon ovoga urednik se loguje da proveri da li je tematski prihvatljiv rad
         });
         
@@ -132,7 +132,6 @@ handlePDF(event){
 
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
-    console.log(reader);
     this.pdfFile = <File>event.target.files[0];
 
     reader.onload = (e) => {

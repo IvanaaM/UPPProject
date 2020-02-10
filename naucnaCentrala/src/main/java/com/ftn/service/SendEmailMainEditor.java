@@ -30,15 +30,13 @@ public class SendEmailMainEditor implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		
-		String text = "Prijavljen(izmenjen) je novi rad u sistem \n\n Mozete pogledati na svom profilu";
-		String subject = "Novi rad";
+		String text = "Prijavljen(izmenjen) je novi rad u sistemu \n\n Mozete pogledati na svom profilu \n\n Naucna centrala";
+		String subject = "Novi rad - urednik";
 	
 		String nameCheck = (String) execution.getProcessInstance().getVariable("glavniUrednik");
 		
-		System.out.println("Postavljen na " + nameCheck);
-		
-		//mailService.sendEmail(m.getMainEditor().getEmail(), text, subject);
-		//System.out.println("Poslato glavnom uredniku: " + m.getMainEditor().getUsername());
+		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		System.out.println("Poslato glavnom uredniku: " + nameCheck);
 
 		
 	}

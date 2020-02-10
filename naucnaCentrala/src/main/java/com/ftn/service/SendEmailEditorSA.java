@@ -45,14 +45,14 @@ public class SendEmailEditorSA implements JavaDelegate {
 		
 		UserCustom uc = magazineService.findBySA(m, no);
 		
-		String text = "Prijavljen je novi rad u sistem \n\n Na Vasem profilu odaberite recenzente za rad";
+		String text = "Prijavljen je novi rad u sistem \n\n Na Vasem profilu odaberite recenzente za rad \n\n Naucna Centrala";
 		String subject = "Novi rad";
 		
-		System.out.println("Poslato uredniku naucne oblasti da odabere recenzente"  + uc.getUsername());
+		System.out.println("Poslato uredniku naucne oblasti da odabere recenzente: "  + uc.getUsername());
 		
 		execution.getProcessInstance().setVariable("urednikNO", uc.getUsername());
 		
-		//mailService.sendEmail(uc.getEmail(), text, subject);
+		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 	}
 

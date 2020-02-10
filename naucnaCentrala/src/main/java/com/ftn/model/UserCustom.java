@@ -62,6 +62,7 @@ public class UserCustom {
 		@ManyToMany(fetch = FetchType.EAGER)
 		private Set<ScientificArea> areas = new HashSet<ScientificArea>();
 
+		
 		@ManyToMany(fetch = FetchType.EAGER)
 		@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 		private Set<Role> roles;
