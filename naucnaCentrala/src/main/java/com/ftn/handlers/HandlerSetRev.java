@@ -10,6 +10,8 @@ public class HandlerSetRev implements TaskListener {
 	@Override
 	public void notify(DelegateTask delegateTask) {
 
+		delegateTask.getExecution().getProcessInstance().setVariable("odabRec1", "");
+		
 		
 
 	}

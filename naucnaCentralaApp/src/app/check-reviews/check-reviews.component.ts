@@ -102,10 +102,11 @@ export class CheckReviewsComponent implements OnInit {
       this.editorService.post(o, this.taskId, 'decision').subscribe(r => {
 
         if (this.next == true){
-          //postavka oka
+          //postavka roka
           this.router.navigateByUrl('checkReviews/date');
         } else {
 
+          localStorage.removeItem('instance');
           this.router.navigateByUrl('');
         }
       });
