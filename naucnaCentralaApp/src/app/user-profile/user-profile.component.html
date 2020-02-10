@@ -30,9 +30,18 @@
       
   </div>
 </table>
+<table *ngIf="rec" style="margin-left: 10px;">
+  <tr>
+<td><b>Koautori: </b></td>
+<div *ngFor="let co of coa">
+ <td style="padding-left: 10px;">{{co}}</td>
+</div>
+
+</tr>
+</table>
 <h5 style="float: left; margin-top: 15px; margin-bottom: 25px;" *ngIf="show"><b>Komentar urednika: {{comm}}</b></h5>
 <iframe style="width: 730px; height: 700px;"></iframe>
-<div>
+<div class="offset-3 col-md-8">
 <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)" ngNativeValidate>
   
   <div *ngFor="let field of formFields" style="margin-bottom: 25px;" >

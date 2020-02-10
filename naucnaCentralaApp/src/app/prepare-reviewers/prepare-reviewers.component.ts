@@ -76,6 +76,9 @@ export class PrepareReviewersComponent implements OnInit {
         o.push({fieldId : this.NO[property], fieldValue : this.NO[property]});
         
       }
+      if(o.length < 2){
+        alert('Morate odabrati minimum 2 recenzenta');
+      } else {
       console.log(o);
 
       this.reviewService.post(o, this.taskId, 'recenzenti').subscribe(r => {
@@ -85,7 +88,7 @@ export class PrepareReviewersComponent implements OnInit {
       });
     
       }
-
+    }
 
   
 

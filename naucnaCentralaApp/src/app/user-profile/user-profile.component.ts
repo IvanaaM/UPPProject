@@ -14,7 +14,7 @@ import { EditorService } from '../services/editor.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, protected router: Router,private paperService: PaperService, private magazineService: MagazineService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private editorService: EditorService, protected router: Router,private paperService: PaperService, private magazineService: MagazineService, private userService: UserService) { }
 
   logged: any;
   instance: String;
@@ -30,15 +30,19 @@ export class UserProfileComponent implements OnInit {
   paper = [];
   show: boolean = true;
   comms: ReviewDTO[];
+  coa: [];
+  rec: boolean = true;
 
   ngOnInit() {
 
     this.logged = JSON.parse(localStorage.getItem('logged'));
     this.instance = JSON.parse(localStorage.getItem('instance'));
 
+
     if(localStorage.getItem('rec') == null) 
     {
       this.show = true;
+      this.rec = true;
     this.userService.getTaskForUser(this.instance).subscribe(res => {
       console.log(res);
       this.createForm(res);
@@ -62,6 +66,9 @@ export class UserProfileComponent implements OnInit {
                     console.log("Ovo je rad"  + f);
                       this.paper = f;
                     
+                      this.editorService.getCoauthors(this.instance).subscribe(r => {
+                          this.coa = r;
+                      });
                    });
 
               });
@@ -70,6 +77,7 @@ export class UserProfileComponent implements OnInit {
     });
 
   } else {
+    this.rec = false;
     // ispravka rada nakon recenziranja
     this.show = false;
     this.title = 'Ispravka PDF rada';

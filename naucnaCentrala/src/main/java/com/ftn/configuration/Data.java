@@ -88,6 +88,28 @@ public class Data implements ApplicationRunner {
 				identityService.saveUser(ured3);
 			}
 			
+			List<User> users5 = identityService.createUserQuery().userIdIn("dunja").list();
+			if(users5.isEmpty() ) {
+				
+				User ured4 = identityService.newUser("dunja");
+				ured4.setEmail("dunja@mail.com");
+				ured4.setFirstName("Dunja");
+				ured4.setLastName("Dunjic");
+				ured4.setPassword("dunja");
+				identityService.saveUser(ured4);
+			}
+			
+			List<User> users6 = identityService.createUserQuery().userIdIn("sara").list();
+			if(users6.isEmpty() ) {
+				
+				User ured6 = identityService.newUser("sara");
+				ured6.setEmail("sara@mail.com");
+				ured6.setFirstName("Sara");
+				ured6.setLastName("Saric");
+				ured6.setPassword("sara");
+				identityService.saveUser(ured6);
+			}
+			
 			
 			UserCustom uc4 = new UserCustom();
 			

@@ -11,7 +11,7 @@
         
     </div>
 </table>
-<table [hidden]="dataShow" style="margin-left: 80px;">
+<table *ngIf="showCoauthors" style="margin-left: 80px;">
   <tr>
 <td><b>Koautori: </b></td>
 <div *ngFor="let co of coa">
@@ -43,6 +43,7 @@
 <iframe [hidden]="!dataShow" style="width: 730px; height: 700px;"></iframe>
 <iframe [hidden]="pdfShow" style="width: 730px; height: 700px;"></iframe>
 </div>
+<div class="offset-3 col-md-6">  
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)" ngNativeValidate>
     
         <div *ngFor="let field of formFields" style="margin-bottom: 25px;" >
@@ -72,5 +73,6 @@
       </div>
       
       <button name="name" class="btn btn-dark" value="value" type="submit">Posalji</button>
-      </form>
+      </form></div>
+
       </div>

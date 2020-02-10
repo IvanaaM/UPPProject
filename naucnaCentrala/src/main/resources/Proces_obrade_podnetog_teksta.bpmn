@@ -243,7 +243,7 @@
     <bpmn:userTask id="Task_02wrpkl" name="Postavka roka za ispravku rada" camunda:assignee="${urednikNO}">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="rok" label="Rok ispravke" type="string">
+          <camunda:formField id="rok" label="Rok ispravke (P&#60;date&#62;T&#60;time&#62;)" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
@@ -365,7 +365,7 @@
     <bpmn:userTask id="UserTask_0961z8l" name="Postavka roka za doradu" camunda:assignee="${urednikNO}">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="rok" label="Rok za doradu rada" type="string">
+          <camunda:formField id="rok" label="Rok za doradu rada (P&#60;date&#62;T&#60;time&#62;)" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
@@ -390,7 +390,7 @@
     <bpmn:userTask id="Task_19lt5sh" name="Postavka roka za recenziranje" camunda:assignee="${urednikNO}">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="rokR" label="Rok za recenziranje" type="string">
+          <camunda:formField id="rokR" label="Rok za recenziranje (P&#60;date&#62;T&#60;time&#62;)" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>

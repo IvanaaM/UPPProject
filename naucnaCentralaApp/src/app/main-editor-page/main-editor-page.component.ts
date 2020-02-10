@@ -33,6 +33,7 @@ export class MainEditorPageComponent implements OnInit {
   pdfShow2: boolean = true;
   accept: boolean = false;
   NO: any;
+  showCoauthors: boolean = false;
 
   constructor(private reviewService: ReviewService, protected router: Router, private route: ActivatedRoute, private userService: UserService, private paperService: PaperService, private editorService: EditorService) { }
 
@@ -49,6 +50,7 @@ export class MainEditorPageComponent implements OnInit {
     this.mode = this.route.snapshot.params.mode;
 
     if(this.mode == 'Pdf'){
+      this.showCoauthors = false;
 
       if(this.route.snapshot.params.type == 'setD'){
 
@@ -94,6 +96,7 @@ export class MainEditorPageComponent implements OnInit {
 
       this.pdfShow = true;
       this.dataShow = false;
+      this.showCoauthors = true;
       this.title="Provera podataka rada";
 
       this.editorService.getCoauthors(this.instance).subscribe(r => {
@@ -116,10 +119,14 @@ export class MainEditorPageComponent implements OnInit {
 
     } else {
       this.pdfShow = true;
+      this.title = 'Provera rada';
       this.dataShow = true;
       this.pdfShow2 = false;
+      this.showCoauthors = false;
       //slucaj gde urednik donosi konacnu odluku, bila je zahtevana manja izmena rada
       //pokazati i komentare recenzenata
+
+      // dodati i komentar korisnika
       this.editorService.getNext(this.instance).subscribe(re => {
 
         this.createForm(re);
