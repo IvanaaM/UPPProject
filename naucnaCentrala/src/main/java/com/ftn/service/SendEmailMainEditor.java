@@ -35,7 +35,7 @@ public class SendEmailMainEditor implements JavaDelegate {
 	
 		String nameCheck = (String) execution.getProcessInstance().getVariable("glavniUrednik");
 		
-		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		//mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		System.out.println("Poslato glavnom uredniku: " + nameCheck);
 
 		

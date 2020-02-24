@@ -25,7 +25,7 @@ public class SendEmailRejectPaper implements JavaDelegate {
 		
 		String username = (String) execution.getProcessInstance().getVariable("user");
 		
-		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		//mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 		System.out.println("Odbija se rad za korisnika " + username);
 

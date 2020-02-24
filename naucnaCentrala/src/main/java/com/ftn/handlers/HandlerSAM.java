@@ -56,7 +56,7 @@ public class HandlerSAM implements TaskListener {
 				Map<String, String> values = enumFormType.getValues();
 				
 				for(ScientificArea a : sareas) {
-					values.put(a.getNaziv(), a.getNaziv());
+					values.put(a.getName(), a.getName());
 				}
 			
 			}

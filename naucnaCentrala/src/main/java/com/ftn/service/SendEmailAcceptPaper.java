@@ -21,7 +21,7 @@ public class SendEmailAcceptPaper implements JavaDelegate {
 		
 		String username = (String) execution.getProcessInstance().getVariable("user");
 		
-		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		//mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 		System.out.println("Prihvacen rad za korisnika " + username);
 

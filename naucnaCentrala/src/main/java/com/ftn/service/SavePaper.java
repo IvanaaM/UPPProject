@@ -2,6 +2,7 @@ package com.ftn.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -42,6 +43,10 @@ public class SavePaper implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 
+		Random rand = new Random();
+
+		int n = rand.nextInt(500);
+		
 		String username = (String) execution.getProcessInstance().getVariable("user");
 		
 		List<FormSubmissionDto> fsd = (List<FormSubmissionDto>) execution.getVariable("paper");
@@ -118,6 +123,7 @@ public class SavePaper implements JavaDelegate {
 		p.setAuthor(u);
 		p.setMagazine(m);
 		p.setPathPdf(pd.getPdf());
+		p.setDoi(n);
 		
 		paperService.savePaper(p);
 	}

@@ -120,7 +120,7 @@ public class UserController {
 	}
 	
 
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')  or hasAuthority('ROLE_ADMIN')" )
 	@GetMapping(path = "/getTask/{procIn}", produces = "application/json")
     public @ResponseBody FormFieldsDto getTask(@PathVariable String procIn) {
 			
@@ -147,7 +147,7 @@ public class UserController {
 		
 	}
 
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')  or hasAuthority('ROLE_ADMIN')" )
 	@PostMapping(path = "/post/{taskId}/{type}", produces = "application/json")
     public @ResponseBody ResponseEntity post(@RequestBody List<FormSubmissionDto> dto, @PathVariable String taskId, @PathVariable String type) {
 		
@@ -184,7 +184,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 	
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')  or hasAuthority('ROLE_ADMIN')" )
 	@PostMapping(path = "/postCoauthor/{taskId}/{type}", produces = "application/json")
     public @ResponseBody ResponseEntity postCoauthor(@RequestBody List<FormSubmissionDto> dto, @PathVariable String taskId, @PathVariable String type) {
 		

@@ -122,8 +122,8 @@ public class Data implements ApplicationRunner {
 			uc4.setTitle("T6");
 			
 			uc4.addArea(saRepository.findByName("Matematika"));
-			uc4.addArea(saRepository.findByName("Astronomija"));
-			uc4.addArea(saRepository.findByName("Biologija"));
+			uc4.addArea(saRepository.findByName("Medicina"));
+			uc4.addArea(saRepository.findByName("Informatika"));
 			
 			Magazine m = magazineService.findByName("Nacionalna geografija");
 			Magazine m2 = magazineService.findByName("Matematika u nauci");
@@ -153,8 +153,8 @@ public class Data implements ApplicationRunner {
 			uc5.setCity("Novi Sad");
 			uc5.setTitle("T3");
 		
+			uc5.addArea(saRepository.findByName("Medicina"));
 			uc5.addArea(saRepository.findByName("Matematika"));
-			uc5.addArea(saRepository.findByName("Astronomija"));
 			
 			String salt5 = BCrypt.gensalt();
 
@@ -183,7 +183,7 @@ public class Data implements ApplicationRunner {
 			uc6.setNonLocked(true);
 			uc6.setFee(true);
 			uc6.addArea(saRepository.findByName("Geografija"));
-			uc6.addArea(saRepository.findByName("Biologija"));
+			uc6.addArea(saRepository.findByName("Informatika"));
 			
 			
 			String salt6 = BCrypt.gensalt();
@@ -200,7 +200,33 @@ public class Data implements ApplicationRunner {
 			
 			magazineService.saveMagazine(m);
 			magazineService.saveMagazine(m2);
+			
+			UserCustom uc7 = new UserCustom();
+			
+			uc7.setFirstName("Mara");
+			uc7.setLastName("Maric");
+			uc7.addRole(roleRepository.findByName(RoleName.ROLE_USER));
+			uc7.setActive(true);
+			uc7.setState("Srbija");
+			uc7.setCity("Novi Sad");
+			uc7.setTitle("T9");
+		
+			uc7.setEnabled(true);
+			uc7.setNonLocked(true);
+			uc7.setFee(true);
+			uc7.addArea(saRepository.findByName("Geografija"));
+			uc7.addArea(saRepository.findByName("Informatika"));
+			
+			String salt7 = BCrypt.gensalt();
+
+			String passwordHashed7 = BCrypt.hashpw("mara", salt7);
+			uc7.setPassword(passwordHashed7);
+			uc7.setEmail("mara@mail.com");
+			uc7.setUsername("mara");
+			
+			userRepository.save(uc7);
 	}
+	
 	
 
 

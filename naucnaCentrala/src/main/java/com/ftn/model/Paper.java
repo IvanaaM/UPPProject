@@ -25,6 +25,9 @@ public class Paper {
 	@Column(name="Title")
 	private String title;
 	
+	@Column(name="DOI")
+	private int doi;
+	
 	@Column(name="Keywords")
 	private String keywords;
 	
@@ -122,5 +125,15 @@ public class Paper {
 	public void setCoauthorsOthers(Set<CoauthorOther> coauthorsOthers) {
 		this.coauthorsOthers = coauthorsOthers;
 	}
+
+	public int getDoi() {
+		return doi;
+	}
+
+	public void setDoi(int doi) {
+		this.doi = doi;
+	}
+	
+	
 	
 }

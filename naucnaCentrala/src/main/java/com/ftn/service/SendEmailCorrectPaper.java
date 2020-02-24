@@ -70,7 +70,7 @@ public class SendEmailCorrectPaper implements JavaDelegate {
 				+ " \n\n Mozete pogledati na svom profilu"
 				+ "\n\n Rok za korigovanje rada je: " + time;
 		
-		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		//mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 		System.out.println("Poslato za korigovanje korisniku");
 		

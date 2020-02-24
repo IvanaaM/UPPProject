@@ -1,9 +1,9 @@
 
-insert into scientific_area (id, name) values (1, "Biologija");
+insert into scientific_area (id, name) values (1, "Informatika");
 insert into scientific_area (id, name) values(2, "Geografija");
-insert into scientific_area (id, name) values(3, "Matematika");
+insert into scientific_area (id, name) values(3, "Medicina");
 insert into scientific_area (id, name) values(4, "Hemija");
-insert into scientific_area (id, name) values(5, "Astronomija");
+insert into scientific_area (id, name) values(5, "Matematika");
 insert into scientific_area (id, name) values(6, "Fizika");
 
 insert into role (id, name) values (1, "ROLE_ADMIN");
@@ -36,7 +36,8 @@ insert into magazine values (1, 1, "Citaocima", 6589332, "Matematika u nauci", 2
 insert into magazine values (2, 1, "Autorima", 5412365, "Nacionalna geografija", 3);
 
 insert into magazine_areas values (1, 3);
-insert into magazine_areas values (1, 6);
+insert into magazine_areas values (1, 1);
+insert into magazine_areas values (1, 5);
 
 insert into magazine_areas values (2, 1);
 insert into magazine_areas values (2, 2);

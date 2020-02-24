@@ -243,7 +243,7 @@ public class UserCustom {
 		public boolean chechIfAreaExists(String name) {
 
 			for (ScientificArea sa : this.areas) {
-				if(sa.getNaziv().equals(name)) {
+				if(sa.getName().equals(name)) {
 					System.out.println("Ima");
 					return true;
 				}

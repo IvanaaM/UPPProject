@@ -48,7 +48,7 @@ public class SendEmailAuthor implements JavaDelegate {
 		
 		String username = (String) execution.getProcessInstance().getVariable("user");
 		
-		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		//mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 		System.out.println("Ovo je user: " + username);
 		

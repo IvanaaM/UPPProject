@@ -29,7 +29,7 @@ public class ScientificArea {
 		this.id = id;
 	}
 
-	public String getNaziv() {
+	public String getName() {
 		return name;
 	}
 

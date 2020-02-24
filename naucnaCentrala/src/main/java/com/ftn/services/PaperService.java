@@ -15,5 +15,10 @@ public class PaperService {
 	public void savePaper(Paper p) {
 		paperRepository.save(p);
 	}
+	
+	public Paper getPaper(String name) {
+		return paperRepository.findByTitle(name);
+	}
+
 
 }

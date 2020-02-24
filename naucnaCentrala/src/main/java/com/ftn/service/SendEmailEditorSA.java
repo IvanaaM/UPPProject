@@ -52,7 +52,7 @@ public class SendEmailEditorSA implements JavaDelegate {
 		
 		execution.getProcessInstance().setVariable("urednikNO", uc.getUsername());
 		
-		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		//mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 	}
 

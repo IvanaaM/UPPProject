@@ -32,8 +32,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.model.FormFieldsDto;
 import com.ftn.model.FormSubmissionDto;
 import com.ftn.model.Magazine;
+import com.ftn.model.ScientificArea;
 import com.ftn.modelDTO.PdfDto;
 import com.ftn.services.MagazineService;
+import com.ftn.services.ScientificAreaService;
 
 @RestController
 @RequestMapping("/magazine")
@@ -43,6 +45,9 @@ public class MagazineController {
 	MagazineService magazineService;
 
 	@Autowired
+	ScientificAreaService saService;
+	
+	@Autowired
 	private TaskService taskService;
 	
 	@Autowired
@@ -51,7 +56,7 @@ public class MagazineController {
 	@Autowired
 	private RuntimeService runtimeService;
 	
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')  or hasAuthority('ROLE_ADMIN')" )
 	@GetMapping(path="/getAll", produces="application/json")
 	public @ResponseBody FormFieldsDto  getMagazines(){
 		
@@ -81,6 +86,36 @@ public class MagazineController {
 		
 	}
 	
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')  or hasAuthority('ROLE_ADMIN')" )
+	@GetMapping(path = "/getMagazines", produces = "application/json")
+	public List<PdfDto> getM() {
+		
+		List<PdfDto> listM = new ArrayList<PdfDto>();
+		
+		for (Magazine m : magazineService.getAllMagazines()) {
+			
+			listM.add(new PdfDto(m.getName()));
+			
+		}
+		
+		return listM;
+	}
+	
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')  or hasAuthority('ROLE_ADMIN')" )
+	@GetMapping(path = "/getAreas", produces = "application/json")
+	public List<PdfDto> getAreas() {
+		
+		List<PdfDto> listM = new ArrayList<PdfDto>();
+		
+		for (ScientificArea sa : saService.getSA()) {
+			
+			listM.add(new PdfDto(sa.getName()));
+			
+		}
+		
+		return listM;
+	}
+	
 	@PostMapping(path = "/post/{taskId}/{type}", produces = "application/json")
     public @ResponseBody ResponseEntity post(@RequestBody List<FormSubmissionDto> dto, @PathVariable String taskId, @PathVariable String type) {
 		
@@ -100,7 +135,7 @@ public class MagazineController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 	
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+	@PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_EDITOR') or hasAuthority('ROLE_REVIEWER')  or hasAuthority('ROLE_ADMIN')" )
 	@PostMapping(path = "/postForPdf/{pI}", produces = "application/json")
     public @ResponseBody ResponseEntity postForPdf(@RequestBody PdfDto pd, @PathVariable String pI) {
 		

@@ -8,5 +8,6 @@ import com.ftn.model.Paper;
 @Repository
 public interface PaperRepository extends JpaRepository<Paper, Long>{
 
+	Paper findByTitle(String title);
 	
 }

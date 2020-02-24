@@ -21,7 +21,7 @@ public class SendEmailERCancel implements JavaDelegate {
 		
 		String text = "Odabir recenzenta mozete izvrsiti kad se ulogujete \n\n Naucna Centrala";
 		
-		mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
+		//mailService.sendEmail("ivanamarin67@gmail.com", text, subject);
 		
 		System.out.println("Poslat mejl za biranje drugog recenzenta " + username);
 
