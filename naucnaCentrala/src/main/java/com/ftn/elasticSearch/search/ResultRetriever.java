@@ -52,7 +52,7 @@ private ElasticsearchTemplate template;
         
         
         
-        SearchRequest sr = new SearchRequest("digitallibrary6");
+        SearchRequest sr = new SearchRequest("digitallibrary7");
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(query).highlighter(builderH);
         sr.source(searchSourceBuilder);

@@ -11,31 +11,31 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Document(indexName = IndexUnit.INDEX_NAME, type = IndexUnit.TYPE_NAME, shards = 1, replicas = 0)
 public class IndexUnit {
 
-	public static final String INDEX_NAME = "digitallibrary6";
+	public static final String INDEX_NAME = "digitallibrary7";
 	public static final String TYPE_NAME = "paper";
 	
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer = "serbian", searchAnalyzer = "serbian")
 	private String magazine;
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer = "serbian", searchAnalyzer = "serbian")
 	private String title;
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer = "serbian", searchAnalyzer = "serbian")
 	private String keywords;
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer = "serbian", searchAnalyzer = "serbian")
 	private String firstNameAuthor;
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer = "serbian", searchAnalyzer = "serbian")
 	private String lastNameAuthor;
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer = "serbian", searchAnalyzer = "serbian")
 	private String area;
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer = "serbian", searchAnalyzer = "serbian")
 	private String text;
 	
 	@Id
