@@ -78,6 +78,7 @@ export class CoauthorsComponent implements OnInit {
         if(this.more == true){
           window.location.reload();
         } else {
+          localStorage.removeItem('instance');
           this.router.navigateByUrl('');
         }
       });

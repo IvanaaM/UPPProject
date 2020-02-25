@@ -1,0 +1,99 @@
+<div  style="margin-top:20px; text-align: center;">
+
+  <form [formGroup]="form">
+    <div style=" margin-left: 50px; margin-right: 20px; text-align: center;" class="form-group">
+      <h1 style="font-weight: bold; margin-bottom: 50px; margin-top:30px;">Pretraga radova</h1>
+
+      <table style="margin-left:10px;font-weight: bold;">
+        <tr style="height: 50px;">
+          
+          <td> <label>Casopis:</label></td>
+          <td colspan="5" style="width: 200px;"><input type="text" [formControl]="magazine" class="form-control margin" name="magazine"></td>
+          <td align="center" style="font-size: 14px;">Obavezeno<input type="checkbox" [formControl]="magazineOperation" class="form-control margin" name="magazineOperation" style="height:30px; width:30px;"></td>
+          <td align="center" style="padding-left: 10px; font-size: 14px;">Fraza<input type="checkbox" [formControl]="magazinePhrase" class="form-control margin" name="magazinePhrase" style="height:30px; width:30px;"></td>
+          <td style="width: 60px;" style="padding-left: 10px;"></td>
+
+         <td><label>Naslov rada:</label></td>
+          <td style="width: 200px;"><input class="form-control margin" [formControl]="title" style="margin-bottom: 20ox" type="text" name="title"></td>
+          <td align="center" style="font-size: 14px;">Obavezno<input type="checkbox" [formControl]="titleOperation" class="form-control margin" name="titleOperation" style="height:30px; width:30px;"></td>
+          <td align="center" style="padding-left: 10px; font-size: 14px;">Fraza<input type="checkbox" [formControl]="titlePhrase" class="form-control margin" name="titlePhrase" style="height:30px; width:30px;"></td>
+       
+        </tr>
+        <tr style="height: 20px;">
+
+        </tr>
+
+        <tr style="height: 50px;">
+          <td><label>Ime autora</label></td>
+          <td>
+            <input style="width: 120px;" class="form-control margin" [formControl]="firstNameAuthor" type="text" name="firstNameAuthor">
+          </td>
+
+
+          <td align="center" style="font-size: 12px;"><input type="checkbox" [formControl]="firstNameAuthorOperation" class="form-control margin" name="firstNameAuthorOperation" style="height:30px; width:30px;"></td>
+          <td align="center" style="font-size: 12px;"><input type="checkbox" [formControl]="firstNameAuthorPhrase" class="form-control margin" name="firstNameAuthorPhrase" style="height:30px; width:30px;"></td>
+          <td style="width: 30px; font-size: 15px;">Prezime autora</td>
+
+          <td>
+            <input  style="width: 120px;" class="form-control margin" [formControl]="lastNameAuthor" type="text" name="lastNameAuthor">
+          </td>
+          <td align="center" style="font-size: 14px;"><input type="checkbox" [formControl]="lastNameAuthorOperation" class="form-control margin" name="lastNameAuthorOperation" style="height:30px; width:30px;"></td>
+          <td align="center" style=" font-size: 14px;"><input type="checkbox" [formControl]="lastNameAuthorPhrase" class="form-control margin" name="lastNameAuthorPhrase" style="height:30px; width:30px;"></td>
+
+          <td style="width: 60px;"></td>
+
+       <td><label>Kljucni pojmovi:</label></td>
+          <td style="width: 200px;"><input class="form-control margin" [formControl]="keywords" type="text" name="keywords"></td>
+          <td align="center" style="font-size: 14px;"><input type="checkbox" [formControl]="keywordsOperation" class="form-control margin" name="keywordsOperation" style="height:30px; width:30px;"></td>
+          <td align="center" style="padding-left: 10px; font-size: 14px;"><input type="checkbox" [formControl]="keywordsPhrase" class="form-control margin" name="keywordsPhrase" style="height:30px; width:30px;"></td>
+       
+        </tr>
+        <tr style="height: 20px;">
+
+        </tr>
+
+        <tr style="height: 50px;">
+          <td><label>Text PDF</label></td>
+          <td colspan="5"  style="width: 300px;"><input class="form-control margin" [formControl]="text" type="text" name="text"></td>
+          <td align="center" style="font-size: 14px;"><input type="checkbox" [formControl]="textOperation" class="form-control margin" name="textOperation" style="height:30px; width:30px;"></td>
+          <td align="center" style="padding-left: 10px; font-size: 14px;"><input type="checkbox" [formControl]="textPhrase" class="form-control margin" name="textPhrase" style="height:30px; width:30px;"></td>
+          <td style="width: 60px;"></td>
+          <td><label>Naucna oblast:</label></td>
+          <td style="width: 300px;"><input class="form-control margin" [formControl]="area" type="text" name="area"></td>
+          <td align="center" style="font-size: 14px;"><input type="checkbox" [formControl]="areaOperation" class="form-control margin" name="areaOperation" style="height:30px; width:30px;"></td>
+          <td align="center" style="padding-left: 10px; font-size: 14px;"><input type="checkbox" [formControl]="areaPhrase" class="form-control margin" name="areaPhrase" style="height:30px; width:30px;"></td>
+       
+        </tr>
+
+      </table>
+  
+      
+      <button class="btn btn-dark" style="height: 45px; width: 115px; margin-top: 35px;"
+      (click)="search()">Pretrazi<i style="padding-left: 10px;" class="fa fa-search"></i></button>
+</div>
+</form>
+ </div>
+
+ <div style="text-align: center; margin-top: 30px;">
+
+   <div class="jumbotron" *ngFor="let item of items"
+    style="display: inline-block; text-align: center; margin-right: 15px; width: 70%; font-size: 17px; font-weight: bolder; border-radius: 25px; width: 500px;  text-align: center; margin-top: 25px; border-style: solid; border-color: lightslategray">
+
+    <p style="font-size: 22px;"><b>{{item.title}}</b></p>
+    <p><b>Kljucni pojmovi:</b> {{item.keywords}}</p>
+    <p><b>Casopis:</b> {{item.magazine}}</p>
+    <p><b>Autor:</b> {{item.firstNameAuthor}} {{item.lastNameAuthor}}</p>
+    <p><b>Naucna oblast:</b> {{item.area}}</p>
+    <!--<p *ngIf="oa">a</p>-->
+    
+    <div *ngIf="item.highl">    
+      <h4><b>Sazetak:</b></h4>
+        <p *ngIf="item.highl.title">Naslov:</p><p *ngIf="item.highl.title" [innerHTML]="item.highl.title"></p>
+        <p *ngIf="item.highl.keywords">Kljucni pojmovi:</p><p *ngIf="item.highl.keywords" [innerHTML]="item.highl.keywords"></p>
+        <p *ngIf="item.highl.magazine">Magazin:</p><p *ngIf="item.highl.magazine" [innerHTML]="item.highl.magazine"></p>
+        <p *ngIf="item.highl.area">Naucna oblast:</p><p *ngIf="item.highl.area" [innerHTML]="item.highl.area"></p>
+        <p *ngIf="item.highl.text">Tekst:</p><p *ngIf="item.highl.text" [innerHTML]="item.highl.text"></p>
+    </div>
+  </div>
+
+ </div>

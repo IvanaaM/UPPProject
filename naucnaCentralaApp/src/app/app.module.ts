@@ -34,6 +34,8 @@ import { CheckReviewsComponent } from './check-reviews/check-reviews.component';
 import { CoauthorsComponent } from './coauthors/coauthors.component';
 import { ReviewerComponent } from './reviewer/reviewer.component';
 import { SetDateComponent } from './set-date/set-date.component';
+import { SearchComponent } from './search/search.component';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { SetDateComponent } from './set-date/set-date.component';
     CheckReviewsComponent,
     CoauthorsComponent,
     ReviewerComponent,
-    SetDateComponent
+    SetDateComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { SetDateComponent } from './set-date/set-date.component';
     AdminServiceService,
     EditorService,
     RepositoryService,
-    ReviewService
+    ReviewService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

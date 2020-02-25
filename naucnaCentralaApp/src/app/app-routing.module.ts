@@ -19,6 +19,7 @@ import { CheckReviewsComponent } from './check-reviews/check-reviews.component';
 import { CoauthorsComponent } from './coauthors/coauthors.component';
 import { ReviewerComponent } from './reviewer/reviewer.component';
 import { SetDateComponent } from './set-date/set-date.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
 
@@ -50,7 +51,8 @@ const routes: Routes = [
   {path: 'checkReviews/:mode', component: CheckReviewsComponent},
   {path: 'addCoauthors', component: CoauthorsComponent},
   {path: 'reviewers', component: ReviewerComponent},
-  {path: 'setDate', component: SetDateComponent}
+  {path: 'setDate', component: SetDateComponent},
+  {path: 'search', component: SearchComponent},
   
 ];
 

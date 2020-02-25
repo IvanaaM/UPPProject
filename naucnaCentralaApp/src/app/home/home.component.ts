@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
         }
 
         if(element.toString() == 'R'){
-          this.recenzent = true;
+          this.show = true;
         }
        
         if(element.toString() == 'A'){

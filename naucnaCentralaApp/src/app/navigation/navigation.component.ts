@@ -84,4 +84,8 @@ export class NavigationComponent implements OnInit {
     //this.router.navigateByUrl('');
   }
 
+  search(){
+    this.router.navigateByUrl('search');
+  }
+
 }

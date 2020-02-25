@@ -7,9 +7,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MagazineService {
-  
+ 
   constructor(private httpClient: HttpClient, private http : Http) { }
 
+  getAllMagazines() {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/magazine/getMagazines', {headers: headers}) as Observable<any>
+  }
+  
+  getSA() {
+    const token = localStorage.getItem('logged');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.httpClient.get('http://localhost:8080/magazine/getAreas', {headers: headers}) as Observable<any>
+  }
+  
   getMagazines(){
     const token = localStorage.getItem('logged');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});

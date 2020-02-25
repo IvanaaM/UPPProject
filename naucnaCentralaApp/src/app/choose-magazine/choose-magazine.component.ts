@@ -113,11 +113,11 @@ export class ChooseMagazineComponent implements OnInit {
       this.userService.shouldPay(procIn).subscribe(r => {
         console.log(r);
         // treba da plati
-        if(r == true){
-            this.router.navigateByUrl('paying');
-        } else {
+       // if(r == true){
+      //      this.router.navigateByUrl('paying');
+      //  } else {
           this.router.navigateByUrl('chooseMagazine/data');
-        }
+      //  }
 
       });
 
